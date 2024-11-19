@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; 
 import './style.css';
 
 const ResourceForm = () => {
   const [vendors, setVendors] = useState([]);
+  const navigate = useNavigate(); 
   const [resource, setResource] = useState({
     fullName: '',
     resume: null,
@@ -14,7 +16,7 @@ const ResourceForm = () => {
   useEffect(() => {
     const fetchVendors = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/vendors');
+        const response = await axios.get('https://mallurus-backend-2.onrender.com/vendors');
         setVendors(response.data);
       } catch (err) {
         console.error(err);
@@ -32,8 +34,9 @@ const ResourceForm = () => {
     formData.append('technologies', resource.technologies);
 
     try {
-      await axios.post('http://localhost:5000/resources', formData);
+      await axios.post('https://mallurus-backend-2.onrender.com/resources', formData);
       alert('Resource added successfully!');
+      navigate('/dashboard');
     } catch (err) {
       console.error(err);
     }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+
 import './style.css'; 
 
 const Dashboard = () => {
@@ -8,7 +9,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchResources = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/resources');
+        const response = await axios.get('https://mallurus-backend-2.onrender.com/resources');
         setResources(response.data);
       } catch (error) {
         console.error('Error fetching resources:', error);
@@ -44,7 +45,7 @@ const Dashboard = () => {
           
             <p>
               <a
-                href={`http://localhost:5000/uploads/${resource.resumePath}`}
+                href={`https://mallurus-backend-2.onrender.com/uploads/${resource.resumePath}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
